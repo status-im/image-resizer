@@ -13,7 +13,10 @@ import (
 var (
 	imageDir = "images/"
 	images = []string{
+		"elephant",
+		"frog",
 		"goat",
+		"mars",
 		"psychedelic",
 		"rainbow",
 		"romanian-flag",

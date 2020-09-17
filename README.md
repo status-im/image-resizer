@@ -1,3 +1,97 @@
+## elephant
+
+![Original elephant image](images/elephant.jpg)
+
+| Image | Size (px^2) | Image Quality (%) | Size (bytes) |
+| :---: | ----------: | ----------------: | -----------: |
+| ![](images/elephant_s-64_q-10.jpg) | 64 | 10 | 863 |
+| ![](images/elephant_s-64_q-20.jpg) | 64 | 20 | 1,015 |
+| ![](images/elephant_s-64_q-30.jpg) | 64 | 30 | 1,139 |
+| ![](images/elephant_s-64_q-40.jpg) | 64 | 40 | 1,246 |
+| ![](images/elephant_s-64_q-50.jpg) | 64 | 50 | 1,347 |
+| ![](images/elephant_s-64_q-60.jpg) | 64 | 60 | 1,453 |
+| ![](images/elephant_s-64_q-70.jpg) | 64 | 70 | 1,601 |
+| ![](images/elephant_s-64_q-80.jpg) | 64 | 80 | 1,849 |
+| ![](images/elephant_s-64_q-90.jpg) | 64 | 90 | 2,455 |
+| ![](images/elephant_s-64_q-100.jpg) | 64 | 100 | 5,380 |
+| ![](images/elephant_s-128_q-10.jpg) | 128 | 10 | 1,462 |
+| ![](images/elephant_s-128_q-20.jpg) | 128 | 20 | 2,024 |
+| ![](images/elephant_s-128_q-30.jpg) | 128 | 30 | 2,470 |
+| ![](images/elephant_s-128_q-40.jpg) | 128 | 40 | 2,847 |
+| ![](images/elephant_s-128_q-50.jpg) | 128 | 50 | 3,176 |
+| ![](images/elephant_s-128_q-60.jpg) | 128 | 60 | 3,547 |
+| ![](images/elephant_s-128_q-70.jpg) | 128 | 70 | 4,096 |
+| ![](images/elephant_s-128_q-80.jpg) | 128 | 80 | 5,018 |
+| ![](images/elephant_s-128_q-90.jpg) | 128 | 90 | 7,175 |
+| ![](images/elephant_s-128_q-100.jpg) | 128 | 100 | 17,956 |
+| ![](images/elephant_s-256_q-10.jpg) | 256 | 10 | 3,805 |
+| ![](images/elephant_s-256_q-20.jpg) | 256 | 20 | 5,897 |
+| ![](images/elephant_s-256_q-30.jpg) | 256 | 30 | 7,574 |
+| ![](images/elephant_s-256_q-40.jpg) | 256 | 40 | 8,856 |
+| ![](images/elephant_s-256_q-50.jpg) | 256 | 50 | 10,113 |
+| ![](images/elephant_s-256_q-60.jpg) | 256 | 60 | 11,487 |
+| ![](images/elephant_s-256_q-70.jpg) | 256 | 70 | 13,678 |
+| ![](images/elephant_s-256_q-80.jpg) | 256 | 80 | 17,239 |
+| ![](images/elephant_s-256_q-90.jpg) | 256 | 90 | 25,558 |
+| ![](images/elephant_s-256_q-100.jpg) | 256 | 100 | 67,079 |
+| ![](images/elephant_s-512_q-10.jpg) | 512 | 10 | 13,068 |
+| ![](images/elephant_s-512_q-20.jpg) | 512 | 20 | 21,216 |
+| ![](images/elephant_s-512_q-30.jpg) | 512 | 30 | 27,661 |
+| ![](images/elephant_s-512_q-40.jpg) | 512 | 40 | 32,670 |
+| ![](images/elephant_s-512_q-50.jpg) | 512 | 50 | 37,467 |
+| ![](images/elephant_s-512_q-60.jpg) | 512 | 60 | 42,644 |
+| ![](images/elephant_s-512_q-70.jpg) | 512 | 70 | 50,632 |
+| ![](images/elephant_s-512_q-80.jpg) | 512 | 80 | 63,813 |
+| ![](images/elephant_s-512_q-90.jpg) | 512 | 90 | 94,778 |
+| ![](images/elephant_s-512_q-100.jpg) | 512 | 100 | 249,486 |
+
+## frog
+
+![Original frog image](images/frog.jpg)
+
+| Image | Size (px^2) | Image Quality (%) | Size (bytes) |
+| :---: | ----------: | ----------------: | -----------: |
+| ![](images/frog_s-64_q-10.jpg) | 64 | 10 | 841 |
+| ![](images/frog_s-64_q-20.jpg) | 64 | 20 | 987 |
+| ![](images/frog_s-64_q-30.jpg) | 64 | 30 | 1,095 |
+| ![](images/frog_s-64_q-40.jpg) | 64 | 40 | 1,181 |
+| ![](images/frog_s-64_q-50.jpg) | 64 | 50 | 1,265 |
+| ![](images/frog_s-64_q-60.jpg) | 64 | 60 | 1,359 |
+| ![](images/frog_s-64_q-70.jpg) | 64 | 70 | 1,508 |
+| ![](images/frog_s-64_q-80.jpg) | 64 | 80 | 1,723 |
+| ![](images/frog_s-64_q-90.jpg) | 64 | 90 | 2,236 |
+| ![](images/frog_s-64_q-100.jpg) | 64 | 100 | 4,852 |
+| ![](images/frog_s-128_q-10.jpg) | 128 | 10 | 1,378 |
+| ![](images/frog_s-128_q-20.jpg) | 128 | 20 | 1,777 |
+| ![](images/frog_s-128_q-30.jpg) | 128 | 30 | 2,119 |
+| ![](images/frog_s-128_q-40.jpg) | 128 | 40 | 2,376 |
+| ![](images/frog_s-128_q-50.jpg) | 128 | 50 | 2,626 |
+| ![](images/frog_s-128_q-60.jpg) | 128 | 60 | 2,893 |
+| ![](images/frog_s-128_q-70.jpg) | 128 | 70 | 3,310 |
+| ![](images/frog_s-128_q-80.jpg) | 128 | 80 | 3,958 |
+| ![](images/frog_s-128_q-90.jpg) | 128 | 90 | 5,480 |
+| ![](images/frog_s-128_q-100.jpg) | 128 | 100 | 14,228 |
+| ![](images/frog_s-256_q-10.jpg) | 256 | 10 | 2,961 |
+| ![](images/frog_s-256_q-20.jpg) | 256 | 20 | 4,019 |
+| ![](images/frog_s-256_q-30.jpg) | 256 | 30 | 4,918 |
+| ![](images/frog_s-256_q-40.jpg) | 256 | 40 | 5,620 |
+| ![](images/frog_s-256_q-50.jpg) | 256 | 50 | 6,346 |
+| ![](images/frog_s-256_q-60.jpg) | 256 | 60 | 7,077 |
+| ![](images/frog_s-256_q-70.jpg) | 256 | 70 | 8,225 |
+| ![](images/frog_s-256_q-80.jpg) | 256 | 80 | 10,039 |
+| ![](images/frog_s-256_q-90.jpg) | 256 | 90 | 14,341 |
+| ![](images/frog_s-256_q-100.jpg) | 256 | 100 | 44,193 |
+| ![](images/frog_s-512_q-10.jpg) | 512 | 10 | 7,746 |
+| ![](images/frog_s-512_q-20.jpg) | 512 | 20 | 10,417 |
+| ![](images/frog_s-512_q-30.jpg) | 512 | 30 | 12,648 |
+| ![](images/frog_s-512_q-40.jpg) | 512 | 40 | 14,525 |
+| ![](images/frog_s-512_q-50.jpg) | 512 | 50 | 16,392 |
+| ![](images/frog_s-512_q-60.jpg) | 512 | 60 | 18,354 |
+| ![](images/frog_s-512_q-70.jpg) | 512 | 70 | 21,551 |
+| ![](images/frog_s-512_q-80.jpg) | 512 | 80 | 27,195 |
+| ![](images/frog_s-512_q-90.jpg) | 512 | 90 | 41,828 |
+| ![](images/frog_s-512_q-100.jpg) | 512 | 100 | 150,267 |
+
 ## goat
 
 ![Original goat image](images/goat.jpg)
@@ -44,6 +138,53 @@
 | ![](images/goat_s-512_q-80.jpg) | 512 | 80 | 28,528 |
 | ![](images/goat_s-512_q-90.jpg) | 512 | 90 | 41,745 |
 | ![](images/goat_s-512_q-100.jpg) | 512 | 100 | 134,721 |
+
+## mars
+
+![Original mars image](images/mars.jpg)
+
+| Image | Size (px^2) | Image Quality (%) | Size (bytes) |
+| :---: | ----------: | ----------------: | -----------: |
+| ![](images/mars_s-64_q-10.jpg) | 64 | 10 | 799 |
+| ![](images/mars_s-64_q-20.jpg) | 64 | 20 | 890 |
+| ![](images/mars_s-64_q-30.jpg) | 64 | 30 | 969 |
+| ![](images/mars_s-64_q-40.jpg) | 64 | 40 | 1,039 |
+| ![](images/mars_s-64_q-50.jpg) | 64 | 50 | 1,096 |
+| ![](images/mars_s-64_q-60.jpg) | 64 | 60 | 1,147 |
+| ![](images/mars_s-64_q-70.jpg) | 64 | 70 | 1,256 |
+| ![](images/mars_s-64_q-80.jpg) | 64 | 80 | 1,413 |
+| ![](images/mars_s-64_q-90.jpg) | 64 | 90 | 1,752 |
+| ![](images/mars_s-64_q-100.jpg) | 64 | 100 | 3,824 |
+| ![](images/mars_s-128_q-10.jpg) | 128 | 10 | 1,099 |
+| ![](images/mars_s-128_q-20.jpg) | 128 | 20 | 1,292 |
+| ![](images/mars_s-128_q-30.jpg) | 128 | 30 | 1,474 |
+| ![](images/mars_s-128_q-40.jpg) | 128 | 40 | 1,621 |
+| ![](images/mars_s-128_q-50.jpg) | 128 | 50 | 1,794 |
+| ![](images/mars_s-128_q-60.jpg) | 128 | 60 | 1,938 |
+| ![](images/mars_s-128_q-70.jpg) | 128 | 70 | 2,184 |
+| ![](images/mars_s-128_q-80.jpg) | 128 | 80 | 2,570 |
+| ![](images/mars_s-128_q-90.jpg) | 128 | 90 | 3,485 |
+| ![](images/mars_s-128_q-100.jpg) | 128 | 100 | 9,549 |
+| ![](images/mars_s-256_q-10.jpg) | 256 | 10 | 2,117 |
+| ![](images/mars_s-256_q-20.jpg) | 256 | 20 | 2,644 |
+| ![](images/mars_s-256_q-30.jpg) | 256 | 30 | 3,096 |
+| ![](images/mars_s-256_q-40.jpg) | 256 | 40 | 3,503 |
+| ![](images/mars_s-256_q-50.jpg) | 256 | 50 | 3,914 |
+| ![](images/mars_s-256_q-60.jpg) | 256 | 60 | 4,370 |
+| ![](images/mars_s-256_q-70.jpg) | 256 | 70 | 5,050 |
+| ![](images/mars_s-256_q-80.jpg) | 256 | 80 | 6,278 |
+| ![](images/mars_s-256_q-90.jpg) | 256 | 90 | 9,070 |
+| ![](images/mars_s-256_q-100.jpg) | 256 | 100 | 29,604 |
+| ![](images/mars_s-512_q-10.jpg) | 512 | 10 | 5,798 |
+| ![](images/mars_s-512_q-20.jpg) | 512 | 20 | 7,146 |
+| ![](images/mars_s-512_q-30.jpg) | 512 | 30 | 8,508 |
+| ![](images/mars_s-512_q-40.jpg) | 512 | 40 | 9,763 |
+| ![](images/mars_s-512_q-50.jpg) | 512 | 50 | 11,025 |
+| ![](images/mars_s-512_q-60.jpg) | 512 | 60 | 12,505 |
+| ![](images/mars_s-512_q-70.jpg) | 512 | 70 | 14,829 |
+| ![](images/mars_s-512_q-80.jpg) | 512 | 80 | 18,832 |
+| ![](images/mars_s-512_q-90.jpg) | 512 | 90 | 28,812 |
+| ![](images/mars_s-512_q-100.jpg) | 512 | 100 | 107,723 |
 
 ## psychedelic
 
@@ -279,5 +420,4 @@
 | ![](images/woman_s-512_q-80.jpg) | 512 | 80 | 21,810 |
 | ![](images/woman_s-512_q-90.jpg) | 512 | 90 | 31,425 |
 | ![](images/woman_s-512_q-100.jpg) | 512 | 100 | 80,487 |
-
 
