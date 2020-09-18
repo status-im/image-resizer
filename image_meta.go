@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"strings"
+
+	"github.com/status-im/image_resizer/common"
 )
 
 type imageDetails struct {
@@ -14,14 +16,14 @@ type imageDetails struct {
 }
 
 func getSourceImageName(imageName string) string {
-	return imageDir + imageName + ".jpg"
+	return common.ImageDir + imageName + ".jpg"
 }
 
 func makeOutputImageName(imageName string, size uint, i int, properties string) string {
 	if properties != "" {
 		properties = "_" + strings.ReplaceAll(properties, " ", "-")
 	}
-	return fmt.Sprintf(imageDir + "%s_s-%d_q-%d%s.jpg", imageName, size, i, properties)
+	return fmt.Sprintf(common.ImageDir + "%s_s-%d_q-%d%s.jpg", imageName, size, i, properties)
 }
 
 func makeImageDetails(imageName string, size uint, quality int, properties string) imageDetails {

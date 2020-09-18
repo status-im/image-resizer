@@ -7,6 +7,8 @@ import (
 	"log"
 	"os"
 	"strconv"
+
+	"github.com/status-im/image_resizer/common"
 )
 
 func getImage(fileName string) image.Image {
@@ -44,10 +46,8 @@ func makeReadMe(imgDs map[string][]imageDetails) {
 	var txt string
 
 	for _, imageName := range images {
-		fn := imageDir + imageName + ".jpg"
-
 		txt += "## " + imageName + "\n\n"
-		txt += fmt.Sprintf("![Original %s image](%s)\n\n", imageName, fn)
+		txt += fmt.Sprintf("![Original %s image](%s)\n\n", imageName, common.ImageDir + imageName + ".jpg")
 
 		txt += "| Image | Properties | Size (px^2) | Image Quality (%) | Size (bytes) |\n"
 		txt += "| :---: | ---------- | ----------: | ----------------: | -----------: |\n"

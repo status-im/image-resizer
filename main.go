@@ -5,7 +5,6 @@ import (
 )
 
 var (
-	imageDir = "images/"
 	images = []string{
 		"elephant",
 		"frog",
