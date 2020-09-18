@@ -1,3 +1,3 @@
 package common
 
-var ImageDir = "images/"
+var ImageDir = "assets/"
