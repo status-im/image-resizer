@@ -9,6 +9,10 @@ import (
 	"github.com/oliamb/cutter"
 )
 
+func ResizeSquare(size uint, img image.Image) image.Image {
+	return resize.Resize(size, 0, img, resize.Bilinear)
+}
+
 func Crop(img image.Image) image.Image {
 	var sl int
 	if img.Bounds().Max.X > img.Bounds().Max.Y {
@@ -18,19 +22,15 @@ func Crop(img image.Image) image.Image {
 	}
 
 	croppedImg, err := cutter.Crop(img, cutter.Config{
-		Width: sl,
+		Width:  sl,
 		Height: sl,
-		Mode: cutter.Centered,
+		Mode:   cutter.Centered,
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	return croppedImg
-}
-
-func ResizeSquare(size uint, img image.Image) image.Image {
-	return resize.Resize(size, 0, img, resize.Bilinear)
 }
 
 func CropCircle(img image.Image, size int) image.Image {
