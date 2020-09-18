@@ -1,9 +1,5 @@
 package main
 
-import (
-	"github.com/nfnt/resize"
-)
-
 var (
 	images = []string{
 		"elephant",
@@ -33,7 +29,7 @@ func main() {
 		for _, size := range sizes {
 			for i := 1; i < 11; i++ {
 
-				ri := resize.Resize(size, 0, croppedImg, resize.Bilinear)
+				ri := resizeSquareImage(size, croppedImg)
 				id := makeImageDetails(imageName, size, i*10, "")
 				outputImage(ri, &id)
 				imgDs[imageName] = append(imgDs[imageName], id)

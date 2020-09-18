@@ -1,10 +1,12 @@
 package main
 
 import (
-	"github.com/oliamb/cutter"
 	"image"
 	"image/draw"
 	"log"
+
+	"github.com/nfnt/resize"
+	"github.com/oliamb/cutter"
 )
 
 func cropImage(img image.Image) image.Image {
@@ -25,6 +27,10 @@ func cropImage(img image.Image) image.Image {
 	}
 
 	return croppedImg
+}
+
+func resizeSquareImage(size uint, img image.Image) image.Image {
+	return resize.Resize(size, 0, img, resize.Bilinear)
 }
 
 func circleCropImage(img image.Image, size int) image.Image {
