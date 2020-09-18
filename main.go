@@ -2,12 +2,17 @@ package main
 
 import (
 	"fmt"
-	"github.com/nfnt/resize"
-	"github.com/oliamb/cutter"
+	"image"
+	"image/color"
+	"image/draw"
 	"image/jpeg"
 	"log"
 	"os"
 	"strconv"
+	"strings"
+
+	"github.com/nfnt/resize"
+	"github.com/oliamb/cutter"
 )
 
 var (
@@ -25,87 +30,140 @@ var (
 	}
 
 	sizes = []uint{
-		64,
 		80,
-		128,
 		240,
-		256,
-		512,
 	}
-
-	fSizes = make(map[string]map[int]map[uint]int64)
 )
 
+type imageDetails struct {
+	SizePixel uint
+	SizeFile int64
+	Quality int
+	FileName string
+	Properties string
+}
+
 func main() {
+	imgDs := make(map[string][]imageDetails)
+
 	for _, imageName := range images {
-		if fSizes[imageName] == nil {
-			fSizes[imageName] = make(map[int]map[uint]int64)
-		}
+		img := getImage(getSourceImageName(imageName))
+		croppedImg := cropImage(img)
 
-		file, err := os.Open(imageDir + imageName + ".jpg")
-		if err != nil {
-			log.Fatal(err)
-		}
+		for _, size := range sizes {
+			for i := 1; i < 11; i++ {
 
-		// decode jpeg into imageName.Image
-		img, err := jpeg.Decode(file)
-		if err != nil {
-			log.Fatal(err)
-		}
-		file.Close()
+				ri := resize.Resize(size, 0, croppedImg, resize.Bilinear)
+				id := makeImageDetails(imageName, size, i*10, "")
+				outputImage(ri, &id)
+				imgDs[imageName] = append(imgDs[imageName], id)
 
-		var sl int
-		if img.Bounds().Max.X > img.Bounds().Max.Y {
-			sl = img.Bounds().Max.Y
-		} else {
-			sl = img.Bounds().Max.X
-		}
+				precci := circleCropImage(ri, int(size))
+				precid := makeImageDetails(imageName, size, i*10, "pre-render circle crop")
+				outputImage(precci, &precid)
+				imgDs[imageName] = append(imgDs[imageName], precid)
 
-		croppedImg, err := cutter.Crop(img, cutter.Config{
-			Width: sl,
-			Height: sl,
-			Mode: cutter.Centered,
-		})
-
-		for i := 1; i < 11; i++ {
-			for _, size := range sizes {
-				n := fmt.Sprintf(imageDir + "%s_s-%d_q-%d.jpg", imageName, size, i*10)
-				m := resize.Resize(size, 0, croppedImg, resize.Bilinear)
-				out, err := os.Create(n)
-				if err != nil {
-					log.Fatal(err)
-				}
-				defer out.Close()
-
-				o := new(jpeg.Options)
-				o.Quality = i * 10
-
-				// write new imageName to file
-				jpeg.Encode(out, m, o)
-
-				fi, _ := out.Stat()
-				if fSizes[imageName][i*10] == nil {
-					fSizes[imageName][i*10] = make(map[uint]int64)
-				}
-				fSizes[imageName][i*10][size] = fi.Size()
+				li := getImage(id.FileName)
+				postcci := circleCropImage(li, int(size))
+				postcid := makeImageDetails(imageName, size, i*10, "post-render circle crop")
+				outputImage(postcci, &postcid)
+				imgDs[imageName] = append(imgDs[imageName], postcid)
 			}
 		}
 	}
 
-	// ---
+	makeReadMe(imgDs)
+}
 
-	rmc := makeReadMeContent()
+func getSourceImageName(imageName string) string {
+	return imageDir + imageName + ".jpg"
+}
 
-	rm, err := os.Create("README.md")
+func makeOutputImageName(imageName string, size uint, i int, properties string) string {
+	if properties != "" {
+		properties = "_" + strings.ReplaceAll(properties, " ", "-")
+	}
+	return fmt.Sprintf(imageDir + "%s_s-%d_q-%d%s.jpg", imageName, size, i, properties)
+}
+
+func makeImageDetails(imageName string, size uint, quality int, properties string) imageDetails {
+	return imageDetails{
+		SizePixel: size,
+		Quality:   quality,
+		Properties: properties,
+		FileName:  makeOutputImageName(imageName, size, quality, properties),
+	}
+}
+
+func getImage(fileName string) image.Image {
+	file, err := os.Open(fileName)
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer rm.Close()
 
-	rm.WriteString(rmc)
+	img, err := jpeg.Decode(file)
+	if err != nil {
+		log.Fatal(err)
+	}
+	file.Close()
+
+	return img
 }
 
-func makeReadMeContent() string {
+func outputImage(img image.Image, imgDetail *imageDetails) {
+	out, err := os.Create(imgDetail.FileName)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer out.Close()
+
+	o := new(jpeg.Options)
+	o.Quality = imgDetail.Quality
+
+	jpeg.Encode(out, img, o)
+
+	fi, _ := out.Stat()
+	imgDetail.SizeFile = fi.Size()
+}
+
+func cropImage(img image.Image) image.Image {
+	var sl int
+	if img.Bounds().Max.X > img.Bounds().Max.Y {
+		sl = img.Bounds().Max.Y
+	} else {
+		sl = img.Bounds().Max.X
+	}
+
+	croppedImg, err := cutter.Crop(img, cutter.Config{
+		Width: sl,
+		Height: sl,
+		Mode: cutter.Centered,
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return croppedImg
+}
+
+func circleCropImage(img image.Image, size int) image.Image {
+	dst := image.NewRGBA(image.Rect(0, 0, size, size))
+	draw.DrawMask(
+		dst,
+		dst.Bounds(),
+		img,
+		image.Point{},
+		&circle{
+			image.Point{X: size / 2, Y: size / 2},
+			size / 2,
+		},
+		image.Point{},
+		draw.Over,
+	)
+	return dst
+}
+
+func makeReadMe(imgDs map[string][]imageDetails) {
 	var txt string
 
 	for _, imageName := range images {
@@ -114,21 +172,23 @@ func makeReadMeContent() string {
 		txt += "## " + imageName + "\n\n"
 		txt += fmt.Sprintf("![Original %s image](%s)\n\n", imageName, fn)
 
-		txt += "| Image | Size (px^2) | Image Quality (%) | Size (bytes) |\n"
-		txt += "| :---: | ----------: | ----------------: | -----------: |\n"
+		txt += "| Image | Properties | Size (px^2) | Image Quality (%) | Size (bytes) |\n"
+		txt += "| :---: | ---------- | ----------: | ----------------: | -----------: |\n"
 
-		for _, size := range sizes {
-			for i := 1; i < 11; i++ {
-				rfn := fmt.Sprintf(imageDir + "%s_s-%d_q-%d.jpg", imageName, size, i*10)
-
-				txt += fmt.Sprintf("| ![](%s) | %d | %d | %s |\n", rfn, size, i*10, format(fSizes[imageName][i*10][size]))
-			}
+		for _, id := range imgDs[imageName] {
+			txt += fmt.Sprintf("| ![](%s) | %s | %d | %d | %s |\n", id.FileName, id.Properties, id.SizePixel, id.Quality, format(id.SizeFile))
 		}
 
 		txt += "\n"
 	}
 
-	return txt
+	rm, err := os.Create("README.md")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rm.Close()
+
+	rm.WriteString(txt)
 }
 
 func format(n int64) string {
@@ -154,4 +214,25 @@ func format(n int64) string {
 			out[j] = ','
 		}
 	}
+}
+
+type circle struct {
+	p image.Point
+	r int
+}
+
+func (c *circle) ColorModel() color.Model {
+	return color.AlphaModel
+}
+
+func (c *circle) Bounds() image.Rectangle {
+	return image.Rect(c.p.X-c.r, c.p.Y-c.r, c.p.X+c.r, c.p.Y+c.r)
+}
+
+func (c *circle) At(x, y int) color.Color {
+	xx, yy, rr := float64(x-c.p.X)+0.5, float64(y-c.p.Y)+0.5, float64(c.r)
+	if xx*xx+yy*yy < rr*rr {
+		return color.Alpha{255}
+	}
+	return color.Alpha{0}
 }
