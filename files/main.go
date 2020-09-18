@@ -1,4 +1,4 @@
-package main
+package files
 
 import (
 	"fmt"
@@ -9,9 +9,10 @@ import (
 	"strconv"
 
 	"github.com/status-im/image_resizer/common"
+	"github.com/status-im/image_resizer/images"
 )
 
-func getImage(fileName string) image.Image {
+func GetImage(fileName string) image.Image {
 	file, err := os.Open(fileName)
 	if err != nil {
 		log.Fatal(err)
@@ -26,7 +27,7 @@ func getImage(fileName string) image.Image {
 	return img
 }
 
-func outputImage(img image.Image, imgDetail *imageDetails) {
+func RenderImage(img image.Image, imgDetail *images.Details) {
 	out, err := os.Create(imgDetail.FileName)
 	if err != nil {
 		log.Fatal(err)
@@ -42,10 +43,10 @@ func outputImage(img image.Image, imgDetail *imageDetails) {
 	imgDetail.SizeFile = fi.Size()
 }
 
-func makeReadMe(imgDs map[string][]imageDetails) {
+func MakeReadMe(imageList []string, imgDs map[string][]images.Details) {
 	var txt string
 
-	for _, imageName := range images {
+	for _, imageName := range imageList {
 		txt += "## " + imageName + "\n\n"
 		txt += fmt.Sprintf("![Original %s image](%s)\n\n", imageName, common.ImageDir + imageName + ".jpg")
 

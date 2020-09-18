@@ -1,4 +1,4 @@
-package main
+package images
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"github.com/status-im/image_resizer/common"
 )
 
-type imageDetails struct {
+type Details struct {
 	SizePixel uint
 	SizeFile int64
 	Quality int
@@ -15,22 +15,22 @@ type imageDetails struct {
 	Properties string
 }
 
-func getSourceImageName(imageName string) string {
+func GetSourceName(imageName string) string {
 	return common.ImageDir + imageName + ".jpg"
 }
 
-func makeOutputImageName(imageName string, size uint, i int, properties string) string {
+func makeOutputName(imageName string, size uint, i int, properties string) string {
 	if properties != "" {
 		properties = "_" + strings.ReplaceAll(properties, " ", "-")
 	}
 	return fmt.Sprintf(common.ImageDir + "%s_s-%d_q-%d%s.jpg", imageName, size, i, properties)
 }
 
-func makeImageDetails(imageName string, size uint, quality int, properties string) imageDetails {
-	return imageDetails{
-		SizePixel: size,
-		Quality:   quality,
+func MakeDetails(imageName string, size uint, quality int, properties string) Details {
+	return Details{
+		SizePixel:  size,
+		Quality:    quality,
 		Properties: properties,
-		FileName:  makeOutputImageName(imageName, size, quality, properties),
+		FileName:   makeOutputName(imageName, size, quality, properties),
 	}
 }

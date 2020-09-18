@@ -1,4 +1,4 @@
-package main
+package images
 
 import (
 	"image"
@@ -9,7 +9,7 @@ import (
 	"github.com/oliamb/cutter"
 )
 
-func cropImage(img image.Image) image.Image {
+func Crop(img image.Image) image.Image {
 	var sl int
 	if img.Bounds().Max.X > img.Bounds().Max.Y {
 		sl = img.Bounds().Max.Y
@@ -29,11 +29,11 @@ func cropImage(img image.Image) image.Image {
 	return croppedImg
 }
 
-func resizeSquareImage(size uint, img image.Image) image.Image {
+func ResizeSquare(size uint, img image.Image) image.Image {
 	return resize.Resize(size, 0, img, resize.Bilinear)
 }
 
-func circleCropImage(img image.Image, size int) image.Image {
+func CropCircle(img image.Image, size int) image.Image {
 	dst := image.NewRGBA(image.Rect(0, 0, size, size))
 	draw.DrawMask(
 		dst,

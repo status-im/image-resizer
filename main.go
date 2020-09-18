@@ -1,7 +1,12 @@
 package main
 
+import (
+	"github.com/status-im/image_resizer/files"
+	"github.com/status-im/image_resizer/images"
+)
+
 var (
-	images = []string{
+	imageList = []string{
 		"elephant",
 		"frog",
 		"goat",
@@ -20,33 +25,33 @@ var (
 )
 
 func main() {
-	imgDs := make(map[string][]imageDetails)
+	imgDs := make(map[string][]images.Details)
 
-	for _, imageName := range images {
-		img := getImage(getSourceImageName(imageName))
-		croppedImg := cropImage(img)
+	for _, imageName := range imageList {
+		img := files.GetImage(images.GetSourceName(imageName))
+		croppedImg := images.Crop(img)
 
 		for _, size := range sizes {
 			for i := 1; i < 11; i++ {
 
-				ri := resizeSquareImage(size, croppedImg)
-				id := makeImageDetails(imageName, size, i*10, "")
-				outputImage(ri, &id)
+				ri := images.ResizeSquare(size, croppedImg)
+				id := images.MakeDetails(imageName, size, i*10, "")
+				files.RenderImage(ri, &id)
 				imgDs[imageName] = append(imgDs[imageName], id)
 
-				precci := circleCropImage(ri, int(size))
-				precid := makeImageDetails(imageName, size, i*10, "pre-render circle crop")
-				outputImage(precci, &precid)
+				precci := images.CropCircle(ri, int(size))
+				precid := images.MakeDetails(imageName, size, i*10, "pre-render circle crop")
+				files.RenderImage(precci, &precid)
 				imgDs[imageName] = append(imgDs[imageName], precid)
 
-				li := getImage(id.FileName)
-				postcci := circleCropImage(li, int(size))
-				postcid := makeImageDetails(imageName, size, i*10, "post-render circle crop")
-				outputImage(postcci, &postcid)
+				li := files.GetImage(id.FileName)
+				postcci := images.CropCircle(li, int(size))
+				postcid := images.MakeDetails(imageName, size, i*10, "post-render circle crop")
+				files.RenderImage(postcci, &postcid)
 				imgDs[imageName] = append(imgDs[imageName], postcid)
 			}
 		}
 	}
 
-	makeReadMe(imgDs)
+	files.MakeReadMe(imageList, imgDs)
 }
